@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datas:</title>
+</head>
+<body>
+    <form>
+        <span>Data de hoje:</span>
+        <input type="date" name="hoje" id="hoje">
+    </form>
+    <script>
+        const hoje = new Date()
+
+        const ano = hoje.getFullYear()
+        const mes = String(hoje.getMonth()+1).padStart(2, '0') //achei interessante a função padStart, até que é útil para trabalhar com datas
+        const dia = String(hoje.getDate()).padStart(2, '0')
+
+        const data_Bonitinha = `${ano}-${mes}-${dia}`;
+        document.getElementById('hoje').value = data_Bonitinha
+    </script>
+    
+</body>
+</html>

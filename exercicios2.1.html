@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário com Data Atual</title>
+</head>
+<body>
+    <h1>Data de Hoje</h1>
+    <input type="date" id="hoje">
+    
+    <script>
+        // Obtém a data atual
+        const hoje = new Date();
+        
+        // Formata a data no formato 'YYYY-MM-DD'
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // Meses são baseados em 0
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        
+        // Define o valor do input de data
+        const dataFormatada = `${ano}-${mes}-${dia}`;
+        document.getElementById('hoje').value = dataFormatada;
+    </script>
+</body>
+</html>

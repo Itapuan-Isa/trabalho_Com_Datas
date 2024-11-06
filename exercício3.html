@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datas - exercício 3</title>
+</head>
+<body>
+    <form>
+        <span>Data de hoje:</span>
+        <input type="date" name="hoje" id="dataInput">
+        <button type="button" id="mostrarData">Mostrar Data</button>
+        <p id="resultado"></p>
+    </form>
+    <script>
+        //"Hojé é quinta-feira, dia vinte e quatro de outubro de dois mil e vinte e quatro."
+        const meses= ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Septembro","Outubro","Novembro","Dezembro"]
+
+        const numerosPorExtenso = [
+            "zero", "um", "dois", "três", "quatro", "cinco",
+            "seis", "sete", "oito", "nove", "dez", "onze",
+            "doze", "treze", "quatorze", "quinze", "dezesseis",
+            "dezessete", "dezoito", "dezenove", "vinte", "vinte e um",
+            "vinte e dois", "vinte e três", "vinte e quatro", "vinte e cinco",
+            "vinte e seis", "vinte e sete", "vinte e oito", "vinte e nove", "trinta", "trinta e um"];
+
+        function obter_Dia_Extenso(dia){
+           return numerosPorExtenso[dia+1]
+        }
+        function obter_Data_PorExtenso(data){
+            const diaDaSemana = data.toLocaleString('pt-BR', {weekday: 'long'})
+            const extDia = obter_Dia_Extenso(data.getDate())
+            const mes = meses[data.getMonth()]
+            const ano = data.getFullYear()
+            return `Hoje é ${diaDaSemana}, dia ${extDia} de ${mes} de ${ano}.`
+        }
+        
+        document.getElementById('mostrarData').addEventListener('click', function(){
+            const dataInput = document.getElementById('dataInput').value
+            if(dataInput){
+                const dataSelecionada = new Date(dataInput)
+                const resultado = obter_Data_PorExtenso(dataSelecionada)
+                document.getElementById('resultado').innerHTML = resultado
+            } else{
+                document.getElementById('resultado').innerHTML = "Por favor, selecione uma data, burro! O que eu vou mostrar se tu não fazer isso?"
+            }
+        });
+
+    </script>
+
+</body>
+</html>
