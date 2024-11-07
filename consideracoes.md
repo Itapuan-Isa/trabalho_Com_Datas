@@ -1,3 +1,8 @@
+AQUI BASICAMENTE É MEU COMEÇO; APENAS UMA BRANCH POIS, FICA MAIS FÁCIL DE TRABALHAR E ESTÁ INTEGRADO HTML E JS NUM MESMO ARQUIVO. FUTURAMENTE EU MELHORO ISSO.
+
+
+
+
 1 - Crie um arquivo chamdo calendario.html e insira o código abaixo:  
 
 
