@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exercicio - 5</title>
 </head>
 <body>
     <h2>Vamos calcular quantos dias faltam para o Natal? </h2>
@@ -18,13 +18,29 @@
 
     <script>
         function dias_Ate_ONatal(){
-            const data_Atual = new Date()
-            const data_doNatal = new Date(data_Atual.getFullYear(), 11, 25)
+            const data_Escolhida = document.getElementById("data_escolhida").value
+            //basicamente, se não escolheu nenhuma data ele pega a atual e faz o calculo
+            const data_Atual = data_Escolhida ? new Date(data_Escolhida) : new Date()
 
-            const diferencadeMS = data_doNatal - data_Atual
-            const diferenca_deDias = Math.floor(diferencadeMS / (1000 * 60 * 60 * 24))
+            const ano_Atual = data_Atual.getFullYear()
+            const data_Natal = new Date(ano_Atual, 11, 25)
 
-            document.getElementById("resultado").innerText = `Faltam ${diferenca_deDias} dias para o Natal! Eba! (Tomara que o Papai Noel não lhe traga presentes...)`
+            //se o Natal passou, ele vai calcular quanto que falta para o próximo Natal...
+            if(data_Atual > data_Natal){
+                data_Natal.setFullYear(ano_Atual+1)
+            }
+             const diferenca_emMS = data_Natal - data_Atual
+             const dias_queFaltam = Math.floor(diferenca_emMS / (1000 * 60 * 60 * 24))
+            
+             if(dias_queFaltam === 0){
+                document.getElementById("resultado").textContent = `Hoje é Natal! Feliz Natal! (Hahahaha! Não ganhou nenhum presente!)`
+             }
+             else if(dias_queFaltam === 1){
+                document.getElementById("resultado").textContent = `Falta ${dias_queFaltam} dia para o Natal! (que Papai Noel não lhe traga nenhum presente)`
+             }
+              else{
+             document.getElementById("resultado").textContent = `Faltam ${dias_queFaltam} dias para o Natal! (que Papai Noel não lhe traga nenhum presente)`
+            }
         }
         document.getElementById("btn_calcular").addEventListener("click", dias_Ate_ONatal)
     </script>
