@@ -33,8 +33,15 @@
         const diferenca_Ms = final - inicio
 
         const diferenca_Dias = diferenca_Ms / (1000 * 60 * 60 * 24)
+
+        if(diferenca_Dias === 1){
+            document.getElementById("resultado").innerText = `A diferença é de ${diferenca_Dias} dia.`
+        } else if(diferenca_Dias === 0){
+            document.getElementById("resultado").innerText = `Não há diferença de dias, estamos no mesmo dia.`
+        } else{
         
-        document.getElementById("resultado").innerText = `A diferença de dias é de ${diferenca_Dias} dias.`
+            document.getElementById("resultado").innerText = `A diferença de dias é de ${diferenca_Dias} dias.`
+}
 }
     document.getElementById("btn_comparar").addEventListener("click", calcular_Diferenca_Dias)
     </script>
