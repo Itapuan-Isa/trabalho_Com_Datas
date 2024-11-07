@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datas</title>
+</head>
+<body>
+    <form>
+        <label for="hoje">Data Início:</label>
+        <input type="date" name="data_inicio" id="data_inicio">
+        <br>
+        <br><label for="hoje">Data Final:</label>
+        <input type="date" name="data_final" id="data_final">
+    </form>
+    <br>
+    <input type="button" value="Comparar" id="btn_comparar">
+    <p id="resultado"></p>
+
+    <script>
+        function calcular_Diferenca_Dias(){
+        const data_De_Inicio = document.getElementById("data_inicio").value
+        const data_Final = document.getElementById("data_final").value
+
+        if(!data_De_Inicio || !data_Final){
+            alert("por favor, selecione duas datas senão EU NÃO CONSIGO CALCULAR A DIFERENÇA ENTRE ELAS!!!")
+            return;
+        }
+
+        const inicio = new Date(data_De_Inicio)
+        const final = new Date(data_Final)
+
+        const diferenca_Ms = final - inicio
+
+        const diferenca_Dias = diferenca_Ms / (1000 * 60 * 60 * 24)
+        
+        document.getElementById("resultado").innerText = `A diferença de dias é de ${diferenca_Dias} dias.`
+}
+    document.getElementById("btn_comparar").addEventListener("click", calcular_Diferenca_Dias)
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Vamos calcular quantos dias faltam para o Natal? </h2>
+    <form>
+        <label for="hoje">Escolha uma data: </label>
+        <br><br>
+        <input type="date" name="data_escolhida" id="data_escolhida">
+    </form>
+    <br>
+    <input type="button" value="Calcular" id="btn_calcular">
+    <p id="resultado"></p>
+
+    <script>
+        function dias_Ate_ONatal(){
+            const data_Atual = new Date()
+            const data_doNatal = new Date(data_Atual.getFullYear(), 11, 25)
+
+            const diferencadeMS = data_doNatal - data_Atual
+            const diferenca_deDias = Math.floor(diferencadeMS / (1000 * 60 * 60 * 24))
+
+            document.getElementById("resultado").innerText = `Faltam ${diferenca_deDias} dias para o Natal! Eba! (Tomara que o Papai Noel não lhe traga presentes...)`
+        }
+        document.getElementById("btn_calcular").addEventListener("click", dias_Ate_ONatal)
+    </script>
+    
+</body>
+</html>

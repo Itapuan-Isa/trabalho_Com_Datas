@@ -1,51 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data por Extenso</title>
+    <title>Contagem Regressiva para o Natal</title>
 </head>
 <body>
-    <h1>Selecione uma Data</h1>
-    <input type="date" id="dataInput">
-    <button id="mostrarData">Mostrar Data por Extenso</button>
+    <form>
+        <label for="hoje">Data Escolhida:</label>
+        <br>
+        <input type="date" name="data_escolhida" id="data_escolhida">
+    </form>
+    <br>
+    <input type="button" value="Calcular" id="btn_calcular">
     <p id="resultado"></p>
 
     <script>
-        const meses = [
-            "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-            "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
-        ];
+        // Função para calcular os dias até o Natal
+        document.getElementById("btn_calcular").addEventListener("click", function() {
+            // Data atual
+            const dataAtual = new Date();
+            
+            // Verificando se o usuário escolheu uma data específica
+            const dataEscolhida = document.getElementById("data_escolhida").value;
+            if (dataEscolhida) {
+                // Converte a data escolhida em formato de string para objeto Date
+                const dataEscolhidaFormatada = new Date(dataEscolhida);
+                
+                // A data do Natal do ano atual
+                const natal = new Date(dataEscolhidaFormatada.getFullYear(), 11, 25); // 11 é dezembro
+            
+                // Calcular a diferença em milissegundos
+                const diffMs = natal - dataEscolhidaFormatada;
+                // Converter a diferença de milissegundos para dias
+                const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24)); 
 
-        const numerosPorExtenso = [
-            "zero", "um", "dois", "três", "quatro", "cinco",
-            "seis", "sete", "oito", "nove", "dez", "onze",
-            "doze", "treze", "quatorze", "quinze", "dezesseis",
-            "dezessete", "dezoito", "dezenove", "vinte", "vinte e um",
-            "vinte e dois", "vinte e três", "vinte e quatro", "vinte e cinco",
-            "vinte e seis", "vinte e sete", "vinte e oito", "vinte e nove", "trinta", "trinta e um"
-        ];
-
-        function obterDiaPorExtenso(dia) {
-            return numerosPorExtenso[dia];
-        }
-
-        function obterDataPorExtenso(data) {
-            const diaDaSemana = data.toLocaleString('pt-BR', { weekday: 'long' });
-            const dia = obterDiaPorExtenso(data.getDate());
-            const mes = meses[data.getMonth()];
-            const ano = data.getFullYear();
-            return `Hoje é ${diaDaSemana}, dia ${dia} de ${mes} de ${ano}.`;
-        }
-
-        document.getElementById('mostrarData').addEventListener('click', function() {
-            const dataInput = document.getElementById('dataInput').value;
-            if (dataInput) {
-                const dataSelecionada = new Date(dataInput);
-                const resultado = obterDataPorExtenso(dataSelecionada);
-                document.getElementById('resultado').innerText = resultado;
+                // Exibir o resultado
+                if (diffDays > 0) {
+                    document.getElementById("resultado").innerText = `Faltam ${diffDays} dias para o Natal!`;
+                } else if (diffDays === 0) {
+                    document.getElementById("resultado").innerText = "Hoje é o Natal!";
+                } else {
+                    document.getElementById("resultado").innerText = `O Natal já passou há ${Math.abs(diffDays)} dias.`;
+                }
             } else {
-                document.getElementById('resultado').innerText = "Por favor, selecione uma data.";
+                document.getElementById("resultado").innerText = "Por favor, escolha uma data!";
             }
         });
     </script>
